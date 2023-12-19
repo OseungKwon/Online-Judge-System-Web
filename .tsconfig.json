@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.base.json",
+  "references": [
+    {
+      "path": "packages/**"
+    }
+  ],
+  "include": ["./src/**/*", "@type"],
+  "exclude": ["packages/**/dist/**", "packages/**/node_modules/*.d.ts", "node_modules/*.d.ts", "*.config.js"]
+}

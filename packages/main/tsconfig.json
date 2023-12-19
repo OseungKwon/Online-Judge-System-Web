@@ -1,0 +1,17 @@
+{
+  "extends": "../../.tsconfig.base.json",
+  "include": ["./src/**/*"],
+  "compilerOptions": {
+    "typeRoots": ["../../node_modules/@types"]
+  },
+  "exclude": [
+    "../../node_modules",
+    "build",
+    "scripts",
+    "acceptance-tests",
+    "webpack",
+    "jest",
+    "jest.setup.ts",
+    "./node_modules/**/*"
+  ]
+}
