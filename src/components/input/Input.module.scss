@@ -1,0 +1,25 @@
+.wrapper {
+  display: flex;
+  padding: 12px 16px;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 8px;
+  border: 1px solid #D5DBDB;
+
+  &:focus, &:hover, &:active {
+    background: #F8F9F9;
+    * {
+      background: #F8F9F9;
+    }
+  }
+}
+
+input {
+  font-family: Pretendard, serif;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  outline: none;
+  border: 0;
+  padding: 0;
+}
