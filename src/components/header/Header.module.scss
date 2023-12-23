@@ -1,0 +1,56 @@
+.container {
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 4rem;
+  padding: 0 1.5rem;
+  background: #fff;
+
+  .title {
+    font-weight: 800;
+  }
+
+  .profileWrapper {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid  rgba(46,64,83,0.5);
+    border-radius: 50px;
+    cursor: pointer;
+
+    .nickname {
+      font-weight: 600;
+    }
+
+    .profileIcon {
+      width: 2rem;
+      height: 2rem;
+      background: #dadeea;
+      border-radius: 50%;
+    }
+
+    &:hover {
+      color: #fff;
+      background: rgb(46,64,83);
+      background: linear-gradient(90deg, rgba(46,64,83,1) 0%, rgba(46,64,83,0.3743872549019608) 50%, rgba(46,64,83,0) 100%);
+      background-size: 400% 400%;
+      border: none;
+      animation: gradient 5s ease infinite;
+    }
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
