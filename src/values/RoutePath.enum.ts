@@ -1,5 +1,5 @@
 export enum RoutePath {
   INIT = '/',
   LOGIN = '/login',
-  PROFILE = '/profile',
+  PROFILE = '/profile/:userID',
 }

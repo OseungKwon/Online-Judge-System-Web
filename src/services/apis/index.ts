@@ -6,7 +6,7 @@ import {
   SignUpResponseInterface,
 } from './authentication/Authenticatoin.model.ts';
 import { AxiosResponseInterface } from './CustomAxios.service.ts';
-import { User, UserResponseInterface, UserType } from './user/User.model.ts';
+import { User, UserRequestInterface, UserResponseInterface, UserType } from './user/User.model.ts';
 import { fetchGetOtherUserProfile, fetchGetUserProfile } from './user/User.service.ts';
 
 // common
@@ -18,4 +18,4 @@ export type { SignInRequestInterface, SignInResponseInterface, SignUpRequestInte
 
 // user
 export { fetchGetOtherUserProfile, fetchGetUserProfile, UserType };
-export type { User, UserResponseInterface };
+export type { User, UserRequestInterface, UserResponseInterface };
