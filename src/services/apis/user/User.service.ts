@@ -19,5 +19,8 @@ export const fetchGetOtherUserProfile = (
     customAxios.get,
     ApiFormatter(InnerApi.USER_PROFILE, requestData.uid),
     requestData,
+    {
+      params: requestData,
+    },
   );
 };

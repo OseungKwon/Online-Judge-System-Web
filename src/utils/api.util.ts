@@ -1,6 +1,6 @@
 const REPLACE_STR = '#{var}';
 
-function ApiFormatter(path: string, ...args: string[]) {
+function ApiFormatter(path: string, ...args: any) {
   let formatPath = path;
   for (let index = 0; index < args.length; index++) {
     formatPath = formatPath.replace(REPLACE_STR, args[index]);
