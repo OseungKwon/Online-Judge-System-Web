@@ -85,7 +85,7 @@ function LoginPage() {
         id: userProfileData.id,
         nickname: userProfileData.nickname,
       });
-      navigate('/profile');
+      navigate('/profile/' + userProfileData.id);
     }
   }, [getUserProfileData, navigate, setUser]);
 
@@ -145,8 +145,9 @@ function LoginPage() {
             >
               {isSignUp ? '로그인' : '회원가입'} 하기
             </Button>
+            <div className={styles.findPassword}>비밀번호 찾기</div>
           </form>
-        </div>{' '}
+        </div>
       </Card>
     </div>
   );
