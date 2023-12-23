@@ -1,12 +1,9 @@
 import { useMutation, UseMutationOptions } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
-import { fetchSignIn } from '../../../services/apis';
-import {
-  SignInRequestInterface,
-  SignInResponseInterface,
-} from '../../../services/apis/authentication/Authenticatoin.model.ts';
-import { AxiosResponseInterface } from '../../../services/apis/CustomAxios.service.ts';
+import { SignInRequestInterface, SignInResponseInterface } from '@/services/apis';
+import { fetchSignIn } from '@/services/apis';
+import { AxiosResponseInterface } from '@/services/apis';
 
 export default function useSignInMutation(
   options?: UseMutationOptions<
@@ -16,7 +13,9 @@ export default function useSignInMutation(
   >,
 ) {
   return useMutation({
-    mutationFn: fetchSignIn,
+    mutationFn: async (request) => {
+      return fetchSignIn(request);
+    },
     ...options,
   });
 }

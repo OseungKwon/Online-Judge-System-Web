@@ -1,7 +1,12 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { Button, Input } from '../../components';
+import { Button, Input } from '@/components';
+import useAuthStore from '@/stores/useAuthStore.ts';
+import useUserStore from '@/stores/useUserStore.ts';
+
 import { useInput } from '../../hooks';
+import useGetUserProfileQuery from '../../hooks/queries/useGetUserProfileQuery.ts';
 import useSignInMutation from './custom-hook/useSignInMutation.ts';
 import useSignUpMutation from './custom-hook/useSignUpMutation.ts';
 import styles from './Login.module.scss';
@@ -12,6 +17,11 @@ function LoginPage() {
   const [email, setEmail, isEmailValid] = useInput<string>('', /^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 
   const [isSignUp, setIsSignUp] = useState(true);
+  const setUser = useUserStore((state) => state.setUser);
+  const [accessToken, setAccessToken] = useAuthStore((state) => [state.accessToken, state.setAccessToken]);
+  const navigate = useNavigate();
+
+  const { data: getUserProfileData } = useGetUserProfileQuery(accessToken ?? '', { enabled: !!accessToken });
 
   const { mutate: mutateSignUp } = useSignUpMutation({
     onSuccess(data) {
@@ -26,7 +36,7 @@ function LoginPage() {
 
   const { mutate: mutateSignIn } = useSignInMutation({
     onSuccess(data) {
-      sessionStorage.setItem('accessToken', data.responseData.accessToken);
+      setAccessToken(data.responseData.accessToken);
     },
     onError(error) {
       if (error.response?.status === 404) {
@@ -37,7 +47,6 @@ function LoginPage() {
 
   const isFormValid = useCallback(
     (isSignUp: boolean) => {
-      console.log(isNicknameValid, isEmailValid, isPasswordValid);
       if (isSignUp) {
         return isNicknameValid && isEmailValid && isPasswordValid;
       }
@@ -67,6 +76,19 @@ function LoginPage() {
     setNickname('');
     setPassword('');
   }, [setEmail, setNickname, setPassword]);
+
+  useEffect(() => {
+    if (getUserProfileData?.responseData) {
+      console.log(getUserProfileData);
+      const userProfileData = getUserProfileData.responseData;
+      setUser({
+        email: userProfileData.email,
+        id: userProfileData.id,
+        nickname: userProfileData.nickname,
+      });
+      navigate('/profile');
+    }
+  }, [getUserProfileData, navigate, setUser]);
 
   return (
     <div className={styles.wrapper}>
