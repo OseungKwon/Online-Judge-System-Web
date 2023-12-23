@@ -18,7 +18,7 @@ function ProfileItem<T extends React.ReactNode>({ name, item, setItem, isEditAbl
       <span className={styles.title}>{name}</span>
       {isEditAble ? (
         <Input
-          value={item as string}
+          value={(item as string) ?? ''}
           onChange={(e) => {
             setItem(e.target.value);
           }}

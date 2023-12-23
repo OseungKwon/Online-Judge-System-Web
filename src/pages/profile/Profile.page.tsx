@@ -44,7 +44,7 @@ function ProfilePage() {
               setIsEditMode((prev) => !prev);
             }}
           >
-            프로필 편집
+            프로필 {isEditMode ? '저장' : '편집'}
           </Button>
         </div>
       </Card>

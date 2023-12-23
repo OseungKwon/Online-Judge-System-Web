@@ -11,6 +11,8 @@ import useAuthStore from '@/stores/useAuthStore.ts';
 import useUserStore from '@/stores/useUserStore.ts';
 import { RoutePath } from '@/values';
 
+import { Header } from './components';
+
 function PrivateRouteWrapper() {
   const navigate = useNavigate();
 
@@ -65,14 +67,17 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <React.Suspense fallback={<></>}>
-        <Router>
-          <Routes>
-            <Route path={RoutePath.LOGIN} element={<LoginPage />} />
-            <Route element={<PrivateRouteWrapper />}>
-              <Route path={RoutePath.PROFILE} element={<ProfilePage />}></Route>
-            </Route>
-          </Routes>
-        </Router>
+        <Header />
+        <main>
+          <Router>
+            <Routes>
+              <Route path={RoutePath.LOGIN} element={<LoginPage />} />
+              <Route element={<PrivateRouteWrapper />}>
+                <Route path={RoutePath.PROFILE} element={<ProfilePage />}></Route>
+              </Route>
+            </Routes>
+          </Router>
+        </main>
       </React.Suspense>
     </QueryClientProvider>
   );
