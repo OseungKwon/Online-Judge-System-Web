@@ -19,7 +19,7 @@ export default function useGetOtherUserProfileQuery(
   options?: Partial<UseQueryOptions<UserDisplayableInterface, AxiosError, UserDisplayableInterface>>,
 ) {
   return useQuery({
-    queryKey: [ApiFormatter(InnerApi.USER_PROFILE), requestData.uid],
+    queryKey: [ApiFormatter(InnerApi.USER_PROFILE, requestData), requestData.uid],
     queryFn: async () => {
       const getOtherUserProfile = await fetchGetOtherUserProfile(requestData);
       return getOtherUserProfile.responseData;
