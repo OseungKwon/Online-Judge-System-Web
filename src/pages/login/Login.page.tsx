@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Button, Input } from '@/components';
+import { Button, Card, Input } from '@/components';
 import useAuthStore from '@/stores/useAuthStore.ts';
 import useUserStore from '@/stores/useUserStore.ts';
 
@@ -79,7 +79,6 @@ function LoginPage() {
 
   useEffect(() => {
     if (getUserProfileData?.responseData) {
-      console.log(getUserProfileData);
       const userProfileData = getUserProfileData.responseData;
       setUser({
         email: userProfileData.email,
@@ -91,59 +90,64 @@ function LoginPage() {
   }, [getUserProfileData, navigate, setUser]);
 
   return (
-    <div className={styles.wrapper}>
-      <h1>Online Judge</h1>
-      <form>
-        {isSignUp && (
-          <Input
-            value={nickname}
-            placeholder={'닉네임'}
-            onChange={(e) => {
-              setNickname(e.target.value);
-            }}
-          />
-        )}
-        <Input
-          type={'email'}
-          value={email}
-          placeholder={'이메일'}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
-        {!isEmailValid && <div className={styles.errorMessage}>올바른 이메일 주소를 입력해 주세요.</div>}
-        <Input
-          type={'password'}
-          value={password}
-          placeholder={'비밀번호'}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
-        <Button
-          onClick={(e) => {
-            e.preventDefault();
+    <div className={styles.container}>
+      <Card>
+        <div className={styles.cardWrapper}>
+          <h1>Online Judge</h1>
+          <form>
+            {isSignUp && (
+              <Input
+                value={nickname}
+                placeholder={'닉네임'}
+                onChange={(e) => {
+                  setNickname(e.target.value);
+                }}
+              />
+            )}
+            <Input
+              type={'email'}
+              value={email}
+              placeholder={'이메일'}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
+            {!isEmailValid && <div className={styles.errorMessage}>올바른 이메일 주소를 입력해 주세요.</div>}
+            <Input
+              type={'password'}
+              value={password}
+              placeholder={'비밀번호'}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+            <Button
+              style={{ marginTop: '1rem' }}
+              onClick={(e) => {
+                e.preventDefault();
 
-            if (isFormValid(isSignUp)) {
-              onSubmitForm();
-              return;
-            }
-            alert('올바른 정보를 입력해 주세요.');
-          }}
-        >
-          {isSignUp ? '회원가입' : '로그인'}
-        </Button>
-        <Button
-          style={{ background: '#EAEDED', color: '#34495E' }}
-          type={'button'}
-          onClick={(e) => {
-            e.preventDefault();
-            setIsSignUp((prev) => !prev);
-          }}
-        >
-          {isSignUp ? '로그인' : '회원가입'} 하러가기
-        </Button>
-      </form>
+                if (isFormValid(isSignUp)) {
+                  onSubmitForm();
+                  return;
+                }
+                alert('올바른 정보를 입력해 주세요.');
+              }}
+            >
+              {isSignUp ? '회원가입' : '로그인'}
+            </Button>
+            <Button
+              style={{ background: '#eaededa6', color: '#34495E' }}
+              type={'button'}
+              onClick={(e) => {
+                e.preventDefault();
+                setIsSignUp((prev) => !prev);
+              }}
+            >
+              {isSignUp ? '로그인' : '회원가입'} 하기
+            </Button>
+          </form>
+        </div>{' '}
+      </Card>
     </div>
   );
 }
