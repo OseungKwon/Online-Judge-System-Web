@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: flex-start;
+  width: 100%;
+
+  .title {
+    width: 8rem;
+    min-width: 8rem;
+    font-weight: 800;
+  }
+}
