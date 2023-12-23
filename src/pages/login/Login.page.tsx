@@ -7,8 +7,8 @@ import useUserStore from '@/stores/useUserStore.ts';
 
 import { useInput } from '../../hooks';
 import useGetUserProfileQuery from '../../hooks/queries/useGetUserProfileQuery.ts';
-import useSignInMutation from './custom-hook/useSignInMutation.ts';
-import useSignUpMutation from './custom-hook/useSignUpMutation.ts';
+import useSignInMutation from './custom-hook/react-query/useSignInMutation.ts';
+import useSignUpMutation from './custom-hook/react-query/useSignUpMutation.ts';
 import styles from './Login.module.scss';
 
 function LoginPage() {

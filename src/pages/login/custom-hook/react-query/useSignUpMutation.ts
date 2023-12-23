@@ -1,12 +1,9 @@
 import { useMutation, UseMutationOptions } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
-import { fetchSignUp } from '../../../services/apis';
-import {
-  SignUpRequestInterface,
-  SignUpResponseInterface,
-} from '../../../services/apis/authentication/Authenticatoin.model.ts';
-import { AxiosResponseInterface } from '../../../services/apis/CustomAxios.service.ts';
+import { fetchSignUp } from '@/services/apis';
+import { SignUpRequestInterface, SignUpResponseInterface } from '@/services/apis';
+import { AxiosResponseInterface } from '@/services/apis';
 
 export default function useSignUpMutation(
   options?: UseMutationOptions<
