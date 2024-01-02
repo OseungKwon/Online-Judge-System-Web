@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React, { useCallback, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Outlet, Route, Routes, useNavigate } from 'react-router-dom';
 
+import { ProblemsPage } from '@/pages';
 import LoginPage from '@/pages/login/Login.page';
 import ProfilePage from '@/pages/profile/Profile.page.tsx';
 import { fetchGetUserProfile } from '@/services/apis';
@@ -74,6 +75,7 @@ function App() {
               <Route path={RoutePath.LOGIN} element={<LoginPage />} />
               <Route element={<PrivateRouteWrapper />}>
                 <Route path={RoutePath.PROFILE} element={<ProfilePage />}></Route>
+                <Route path={RoutePath.PROBLEMS} element={<ProblemsPage />}></Route>
               </Route>
             </Routes>
           </Router>
