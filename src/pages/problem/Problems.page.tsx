@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { Card, Input } from '@/components';
 
+import ProblemList from './components/ProblemList.component';
 import useGetProblemsQuery from './custom-hook/useGetProblemsQuery';
 import styles from './Problems.module.scss';
 function ProblemsPage() {
@@ -20,9 +21,7 @@ function ProblemsPage() {
       </Card>
       <Card>
         <div className={styles.cardWrapper}>
-          {(getProblemsData?.pages.flatMap((page) => page.responseData) ?? []).map((data) => {
-            return <div key={data.id}>{data.id}</div>;
-          })}
+          <ProblemList datas={getProblemsData?.pages.flatMap((page) => page.responseData) ?? []} />
         </div>
       </Card>
     </div>

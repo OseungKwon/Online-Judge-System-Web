@@ -57,11 +57,29 @@ async function axiosHandler<TResponseData, TRequestData extends object | undefin
   requestData: TRequestData,
   config?: AxiosRequestConfig,
 ): Promise<AxiosResponseInterface<TResponseData, TRequestData>> {
-  const responseData = await func(url, requestData, config);
-  return {
-    responseData: responseData,
-    requestData: requestData,
+  const fetchData = {
+    config: config,
+    data: undefined,
   };
+  const calledFunction = (() => {
+    if (func === customAxios.get || func === customAxios.delete) {
+      return func(url, fetchData.config);
+    } else {
+      return func(url, fetchData.data, fetchData.config);
+    }
+  })();
+
+  // const calledFunction = await func(url, requestData, config);
+  return calledFunction
+    .then((response) => {
+      return {
+        responseData: response,
+        requestData: requestData,
+      };
+    })
+    .catch((e) => {
+      throw e;
+    });
 }
 
 export { axiosHandler };
