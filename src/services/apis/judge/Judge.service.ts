@@ -3,7 +3,7 @@ import { ApiFormatter } from '@/utils';
 import { InnerApi } from '@/values';
 
 import { axiosHandler, customAxios } from '../CustomAxios.service';
-import { ProblemResponseInterface, ProblemsRequestInterface } from './Problem.model';
+import { ProblemRequestInterface, ProblemResponseInterface, ProblemsRequestInterface } from './Problem.model';
 
 /**
  * `Contributer`가 출제한 문제 목록을 가져옵니다.
@@ -12,18 +12,43 @@ import { ProblemResponseInterface, ProblemsRequestInterface } from './Problem.mo
 export const fetchGetProblems = (
   requestData: ProblemsRequestInterface,
 ): Promise<AxiosResponseInterface<ProblemResponseInterface[], ProblemsRequestInterface>> => {
-  try {
-    return axiosHandler<ProblemResponseInterface[], ProblemsRequestInterface>(
-      customAxios.get,
-      ApiFormatter(InnerApi.PROBLEM),
-      requestData,
-      {
-        params: {
-          ...requestData,
-        },
+  return axiosHandler<ProblemResponseInterface[], ProblemsRequestInterface>(
+    customAxios.get,
+    ApiFormatter(InnerApi.PROBLEM),
+    requestData,
+    {
+      params: {
+        ...requestData,
       },
-    );
-  } catch (error) {
-    throw error;
-  }
+    },
+  );
+};
+
+/**
+ * 단일 문제 조회
+ * @param requestData
+ */
+export const fetchGetProblem = (
+  requestData: ProblemRequestInterface,
+): Promise<AxiosResponseInterface<ProblemResponseInterface, ProblemRequestInterface>> => {
+  return axiosHandler<ProblemResponseInterface, ProblemRequestInterface>(
+    customAxios.get,
+    ApiFormatter(InnerApi.PROBLEM, requestData.pid),
+    requestData,
+  );
+};
+
+export const fetchCreateProblem = (
+  requestData: ProblemRequestInterface,
+): Promise<AxiosResponseInterface<ProblemResponseInterface, ProblemRequestInterface>> => {
+  return axiosHandler<ProblemResponseInterface, ProblemRequestInterface>(
+    customAxios.post,
+    ApiFormatter(InnerApi.PROBLEM),
+    requestData,
+    {
+      params: {
+        ...requestData,
+      },
+    },
+  );
 };

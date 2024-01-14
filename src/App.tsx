@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Outlet, Route, Routes, useNavigate } from 'rea
 
 import { ProblemsPage } from '@/pages';
 import LoginPage from '@/pages/login/Login.page';
+import ProblemPage from '@/pages/problem/Problem.page.tsx';
 import ProfilePage from '@/pages/profile/Profile.page.tsx';
 import { fetchGetUserProfile } from '@/services/apis';
 import useAuthStore from '@/stores/useAuthStore.ts';
@@ -76,6 +77,7 @@ function App() {
               <Route element={<PrivateRouteWrapper />}>
                 <Route path={RoutePath.PROFILE} element={<ProfilePage />}></Route>
                 <Route path={RoutePath.PROBLEMS} element={<ProblemsPage />}></Route>
+                <Route path={RoutePath.PROBLEM} element={<ProblemPage />}></Route>
               </Route>
             </Routes>
           </Router>

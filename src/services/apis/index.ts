@@ -6,8 +6,13 @@ import {
   SignUpResponseInterface,
 } from './authentication/Authenticatoin.model.ts';
 import { AxiosResponseInterface } from './CustomAxios.service.ts';
-import { fetchGetProblems } from './judge/Judge.service.ts';
-import { ProblemResponseInterface, ProblemsRequestInterface } from './judge/Problem.model.ts';
+import { fetchCreateProblem, fetchGetProblem, fetchGetProblems } from './judge/Judge.service.ts';
+import {
+  ProblemRequestInterface,
+  ProblemResponseInterface,
+  ProblemsRequestInterface,
+  ProblemUpdateRequestInterface,
+} from './judge/Problem.model.ts';
 import {
   User,
   UserRequestInterface,
@@ -36,5 +41,10 @@ export type {
 };
 
 // judge
-export { fetchGetProblems };
-export type { ProblemResponseInterface, ProblemsRequestInterface };
+export { fetchCreateProblem, fetchGetProblem, fetchGetProblems };
+export type {
+  ProblemRequestInterface,
+  ProblemResponseInterface,
+  ProblemsRequestInterface,
+  ProblemUpdateRequestInterface,
+};

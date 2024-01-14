@@ -1,0 +1,11 @@
+.container {
+  min-height: 5rem;
+}
+
+.ql-editor {
+  min-height: 300px !important;
+  max-height: 800px;
+  overflow: hidden;
+  overflow-x: scroll;
+  overflow-y: scroll;
+}

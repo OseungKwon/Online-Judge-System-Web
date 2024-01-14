@@ -3,6 +3,9 @@ export interface ProblemsRequestInterface {
   page?: number;
   offset: number;
 }
+export interface ProblemRequestInterface {
+  pid: number;
+}
 
 export interface ProblemResponseInterface {
   id: number;
@@ -18,4 +21,14 @@ export interface ProblemResponseInterface {
   contributerId: string;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface ProblemUpdateRequestInterface {
+  title: string;
+  problem: string;
+  input: string;
+  output: string;
+  timeLimit: number;
+  memoryLimit: number;
+  tags: string[];
 }

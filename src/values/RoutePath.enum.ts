@@ -3,4 +3,5 @@ export enum RoutePath {
   LOGIN = '/login',
   PROFILE = '/profile/:userID',
   PROBLEMS = '/problems',
+  PROBLEM = '/problems/:pid',
 }
