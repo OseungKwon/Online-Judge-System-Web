@@ -4,20 +4,20 @@ import { AxiosError } from 'axios';
 import {
   AxiosResponseInterface,
   fetchGetProblems,
-  ProblemRequestInterface,
   ProblemResponseInterface,
+  ProblemsRequestInterface,
 } from '@/services/apis';
 import { ApiFormatter } from '@/utils';
 import { InnerApi } from '@/values';
 
 function useGetProblemsQuery(
-  requestData: ProblemRequestInterface,
+  requestData: ProblemsRequestInterface,
   options?: UseInfiniteQueryOptions<
-    AxiosResponseInterface<ProblemResponseInterface[], ProblemRequestInterface>,
+    AxiosResponseInterface<ProblemResponseInterface[], ProblemsRequestInterface>,
     AxiosError
   >,
 ) {
-  return useInfiniteQuery<AxiosResponseInterface<ProblemResponseInterface[], ProblemRequestInterface>, AxiosError>({
+  return useInfiniteQuery<AxiosResponseInterface<ProblemResponseInterface[], ProblemsRequestInterface>, AxiosError>({
     queryKey: [ApiFormatter(InnerApi.PROBLEM), 'infinite', requestData.search],
     queryFn: async ({ pageParam = 1 }) => {
       return await fetchGetProblems({

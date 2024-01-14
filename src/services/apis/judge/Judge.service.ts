@@ -3,17 +3,17 @@ import { ApiFormatter } from '@/utils';
 import { InnerApi } from '@/values';
 
 import { axiosHandler, customAxios } from '../CustomAxios.service';
-import { ProblemRequestInterface, ProblemResponseInterface } from './Problem.model';
+import { ProblemResponseInterface, ProblemsRequestInterface } from './Problem.model';
 
 /**
  * `Contributer`가 출제한 문제 목록을 가져옵니다.
  * @param requestData
  */
 export const fetchGetProblems = (
-  requestData: ProblemRequestInterface,
-): Promise<AxiosResponseInterface<ProblemResponseInterface[], ProblemRequestInterface>> => {
+  requestData: ProblemsRequestInterface,
+): Promise<AxiosResponseInterface<ProblemResponseInterface[], ProblemsRequestInterface>> => {
   try {
-    return axiosHandler<ProblemResponseInterface[], ProblemRequestInterface>(
+    return axiosHandler<ProblemResponseInterface[], ProblemsRequestInterface>(
       customAxios.get,
       ApiFormatter(InnerApi.PROBLEM),
       requestData,

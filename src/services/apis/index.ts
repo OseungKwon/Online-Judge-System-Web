@@ -7,7 +7,7 @@ import {
 } from './authentication/Authenticatoin.model.ts';
 import { AxiosResponseInterface } from './CustomAxios.service.ts';
 import { fetchGetProblems } from './judge/Judge.service.ts';
-import { ProblemRequestInterface, ProblemResponseInterface } from './judge/Problem.model.ts';
+import { ProblemResponseInterface, ProblemsRequestInterface } from './judge/Problem.model.ts';
 import {
   User,
   UserRequestInterface,
@@ -37,4 +37,4 @@ export type {
 
 // judge
 export { fetchGetProblems };
-export type { ProblemRequestInterface, ProblemResponseInterface };
+export type { ProblemResponseInterface, ProblemsRequestInterface };

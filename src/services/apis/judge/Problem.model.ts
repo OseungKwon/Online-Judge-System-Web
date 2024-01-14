@@ -1,4 +1,4 @@
-export interface ProblemRequestInterface {
+export interface ProblemsRequestInterface {
   search: string;
   page?: number;
   offset: number;
