@@ -24,6 +24,7 @@ export interface ProblemResponseInterface {
 }
 
 export interface ProblemUpdateRequestInterface {
+  pid: number;
   title: string;
   problem: string;
   input: string;
@@ -31,4 +32,23 @@ export interface ProblemUpdateRequestInterface {
   timeLimit: number;
   memoryLimit: number;
   tags: string[];
+}
+
+export interface ProblemCreateResponseInterface {
+  title: string;
+  problem: string;
+  input: string;
+  output: string;
+  timeLimit: number;
+  memoryLimit: number;
+  tags: string[];
+}
+
+export interface ProblemDeleteRequestInterface {
+  pid: number;
+}
+
+export interface ProblemDeleteResponseInterface {
+  input: string;
+  output: string;
 }

@@ -4,3 +4,13 @@
   gap: 1rem;
   padding: 1rem;
 }
+
+.row {
+  display: flex;
+  flex: 1;
+  gap: 1rem;
+}
+
+.searchInput {
+  flex: 1;
+}

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { Button, Card, Input, QuillEditor } from '@/components';
+import useDeleteProblemMutation from '@/pages/problem/custom-hook/react-query/useDeleteProblemMutation.ts';
+import useUpdateProblemMutation from '@/pages/problem/custom-hook/react-query/useUpdateProblemMutation.ts';
 import { ProblemUpdateRequestInterface } from '@/services/apis';
 
 import useGetProblemQuery from './custom-hook/react-query/useGetProblemQuery';
@@ -9,12 +11,17 @@ import styles from './Problem.module.scss';
 
 function ProblemPage() {
   const location = useLocation();
+
   const { data: problem } = useGetProblemQuery(
     { pid: Number(location.pathname.split('/')[2]) },
     { enabled: location.pathname.split('/')[2] !== 'new' },
   );
 
+  const { mutate: mutateDeleteProblem } = useDeleteProblemMutation();
+  const { mutate: mutateUpdateProblem } = useUpdateProblemMutation();
+
   const [problemForm, setProblemForm] = useState<ProblemUpdateRequestInterface>({
+    pid: Number(location.pathname.split('/')[2]),
     title: problem?.problem ?? '',
     problem: problem?.problem ?? '',
     input: problem?.input ?? '',
@@ -26,6 +33,10 @@ function ProblemPage() {
 
   const [content, setContent] = useState<string>('');
   const [isEditForm, setIsEditForm] = useState<boolean>(false);
+
+  const onSubmitProblem = () => {
+    mutateUpdateProblem(problemForm);
+  };
   return (
     <div className={styles.container}>
       <Card>
@@ -98,13 +109,33 @@ function ProblemPage() {
 
         <div className={styles.submitArea}>
           <Button
+            style={{ background: '#c94a4a' }}
             onClick={() => {
-              setIsEditForm((prev) => !prev);
+              if (problemForm.pid) {
+                mutateDeleteProblem({ pid: problemForm.pid });
+              }
             }}
           >
-            수정
+            삭제
           </Button>
-          <Button>저장</Button>
+          {isEditForm ? (
+            <Button
+              onClick={() => {
+                setIsEditForm((prev) => !prev);
+                onSubmitProblem();
+              }}
+            >
+              저장
+            </Button>
+          ) : (
+            <Button
+              onClick={() => {
+                setIsEditForm((prev) => !prev);
+              }}
+            >
+              수정
+            </Button>
+          )}
         </div>
       </Card>
     </div>
