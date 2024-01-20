@@ -20,7 +20,7 @@ function Header() {
       <div className={styles.title}>Online Judge</div>
       <div className={styles.menus}>
         {menuList.map((menu) => {
-          return <div>{menuList}</div>;
+          return <div>{menuList} 수정중</div>;
         })}
       </div>
       {!!nickname && (
